@@ -1,0 +1,2 @@
+d47e8c82c6b422724ab89866cd635ba247c50290ec70ac2bf765518e4af894cf  $HOME/Games/Heroic/Prefixes/Grand Theft Auto V/drive_c/Program Files/Rockstar Games/Launcher/Launcher.exe
+1653347652b315e5bca950650fdddc43750029484bb2c26cbf95c1cd1ca8578f  $HOME/Games/Heroic/Prefixes/Grand Theft Auto V/drive_c/Program Files/Rockstar Games/Launcher/LauncherPatcher.exe
