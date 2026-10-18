@@ -8,7 +8,7 @@
 |-----------|--------|----------|
 | Ядро Linux | 7.2.10-arch1-1 | `uname -r` |
 | Wine/Proton | GE-Proton-latest (GE-Proton11-9) | `~/.config/heroic/tools/proton/` |
-| majestic-linux-runner | r86.765b2b7-1 (AUR) | `pacman -Qm` |
+| majestic-linux-runner-git | r86.765b2b7-1 (AUR) | `pacman -Qi majestic-linux-runner-git` |
 | Majestic Launcher | 6.1.28 | `resources/app.asar/package.json` |
 | Heroic Games Launcher | 2.22.4 Hajrudin | лог запуска Heroic |
 | Rockstar Games Launcher | 1.0.109.3031 | `launcher.log`, `prelauncher.log` |
@@ -92,5 +92,26 @@
 
 ## Неизвестное
 
-- Точная команда запуска Epic Games Launcher при нажатии «Играть» в Majestic (не удаётся зафиксировать в процессах).
 - Почему игра запускалась один раз через чужой Epic Games Launcher (AppImage) и перестала после перезагрузки.
+
+## Запуск без Heroic
+
+Проверено: Heroic Games Launcher **не нужен при запуске** — игра стартует через `majestic-linux run` при закрытом Heroic. Heroic требуется только для первой установки (скачивание файлов GTA V из EGS, создание префикса, установка Rockstar Launcher и Social Club, GE-Proton).
+
+Поскольку Heroic не нужен при запуске, в настройках GTA V в Heroic можно убрать «alternative exe» (`targetExe` → путь к `Majestic Launcher.exe`). Сам Heroic **удалять не стоит** — через него обновляются и проверяются файлы игры.
+
+## Почему Epic открывается сам после «Играть»
+
+Зафиксировано в `ps --forest` (process-tree-final.log). При нажатии «Играть» Heroic запускает Majestic Launcher через:
+
+```
+umu_run.py C:\windows\command\EpicGamesLauncher.exe ...\Majestic Launcher.exe -AUTH_LOGIN=unused -AUTH_PASSWORD=...
+```
+
+То есть `C:\windows\command\EpicGamesLauncher.exe` (заглушка из-за `USE_FAKE_EPIC_EXE=true`) передаётся в `umu_run.py` как исполняемый файл, а Majestic Launcher — как аргумент. Далее в цепочке Proton/Wine:
+
+```
+start.exe /exec C:\windows\command\EpicGamesLauncher.exe ...\Majestic Launcher.exe ...
+```
+
+`start.exe /exec` на самом деле запускает `EpicGamesLauncher.exe` как отдельный Windows-процесс (PID 38979 в логе, ребёнок pressure-vessel/proton-цепочки, PPID не Majestic). Поэтому окно Epic Games Launcher появляется само — не Majestic его вызывает, а цепочка запуска Proton/Wine, iniciрованная Heroic с `targetExe` = Majestic Launcher и `USE_FAKE_EPIC_EXE=true`.

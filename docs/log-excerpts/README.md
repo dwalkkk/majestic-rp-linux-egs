@@ -12,7 +12,7 @@
 [startup] Shutting down to request third-party launch
 ```
 
-## Majestic 패чер: таймаут
+## Majestic патчер: таймаут
 ```
 [info] MAJESTIC: Is running as administrator: true
 [info] MAJESTIC: Deleting pirate files
