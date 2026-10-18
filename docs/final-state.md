@@ -12,7 +12,7 @@
 | Majestic Launcher | 6.1.28 | `resources/app.asar/package.json` |
 | Heroic Games Launcher | 2.22.4 Hajrudin | лог запуска Heroic |
 | Rockstar Games Launcher | 1.0.109.3031 | `launcher.log`, `prelauncher.log` |
-| Epic Games Launcher | 20.3.3 | установлен через MSI в префиксе |
+| Epic Games Launcher | 20.3.5 | установлен через MSI в префиксе, подтверждено логом AppVersion |
 
 ## Дерево папок с размерами
 

@@ -30,7 +30,7 @@ Majestic Launcher существует только под Windows. Есть н�
 Подробности и проверка: [`docs/final-state.md`](docs/final-state.md), [`scripts/check-state.sh`](scripts/check-state.sh).
 
 - Раннер использует **префикс Heroic** (не отдельный). Путь к нему задан через симлинк, **который обязательно заканчивается числом**, например `~/Games/majestic-gtav/271590` → префикс Heroic (внутри должна быть папка `pfx`). Без числа в пути ProtonFixes падает (`IndexError`).
-- В префиксе установлен **настоящий Epic Games Launcher** (версия 20.3.3 в логах).
+- В префиксе установлен **настоящий Epic Games Launcher** (версия 20.3.5 в логах).
 - **Настоящие файлы Rockstar Launcher**, без обёрток:
   - `Launcher.exe`, 29 920 888 байт, sha256 `d47e8c82c6b422724ab89866cd635ba247c50290ec70ac2bf765518e4af894cf`, версия 1.0.109.3031
   - `LauncherPatcher.exe`, 1 208 952 байта, sha256 `1653347652b315e5bca950650fdddc43750029484bb2c26cbf95c1cd1ca8578f`
@@ -67,7 +67,7 @@ Heroic при этом **не запускается и не нажимаетс�
 | «Запустите GTA V с помощью Rockstar Games Launcher» | Majestic запускает `GTA5.exe`, а Epic-версии нужен Rockstar Launcher | Настоящий Epic в префиксе | подтверждено сообщением, причина по логам |
 | `Epic Games Launcher not detected as parent process`, потом `ERR_TIMEOUT` через 180 с | Нет настоящего Epic Games Launcher (заглушка Heroic не подходит) | Установить и запустить настоящий Epic | подтверждено логами |
 | «MSI payload failed signature verification» | Особенность exe-установщика Epic в Wine | Устанавливать MSI | подтверждено |
-| У Epic нет окна, `EpicGamesUpdater … StartServiceFailed (code 8)` | После самообновления лаунчер не перезапускается | В итоге заработал после обновления до 20.3.3 | причина **предположение** |
+| У Epic нет окна, `EpicGamesUpdater … StartServiceFailed (code 8)` | После самообновления лаунчер не перезапускается | В итоге заработал после обновления до 20.3.5 | причина **предположение** |
 | Крэш Epic: `Assertion failed: PixelFormat … SlateOpenGLContext.cpp` | Флаг `-opengl` | Не использовать | подтверждено |
 | Цикл `--real --real` в `launcher.log` | Самодельная обёртка `Launcher.exe` вызывала `Launcher_real.exe` по кругу | Обёртки не нужны, вернуть настоящие файлы | подтверждено логами |
 | `Launcher_real.exe` и другие файлы пропадают, `Launcher.exe` становится настоящим | `LauncherPatcher.exe` переустанавливает Rockstar Launcher | Держать копию рабочих файлов | механизм — **предположение** |
